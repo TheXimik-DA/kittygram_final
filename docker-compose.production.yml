@@ -13,26 +13,28 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    build: ./backend/
+    image: theximik/kittygram_backend
     env_file: .env
     volumes:
       - static:/backend_static
       - media:/app/media/
+    depends_on:
+      - db
 
   frontend:
+    image: theximik/kittygram_frontend
     env_file: .env
-    build: ./frontend/
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
 
   gateway:
-    build: ./nginx/
+    image: theximik/kittygram_gateway
     env_file: .env
     volumes:
-      - static:/staticfiles
+      - static:/static
       - media:/app/media/
     ports:
       - 9000:80
-
-
+    depends_on:
+      - db
