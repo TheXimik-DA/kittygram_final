@@ -28,7 +28,7 @@
    # Секреты джанги
    SECRET_KEY='SECRET_KEY'
    DEBUG=False
-   ALLOWED_HOSTS='ваш домен'
+   ALLOWED_HOSTS='ваш домен.'
     ``` 
 
 ### Создание Docker-образов
